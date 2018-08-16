@@ -10,6 +10,9 @@ def get_sample_filename(file_path):
 def get_sample_directory(file_path):
 	return pathlib.Path(file_path).parent
 
+#
+# assumes that sample name ends at the first _ character
+#
 def get_sample_name(file_path):
 	xs = get_sample_filename(file_path).split("_")
 	return xs[0], xs[1:]
@@ -22,6 +25,17 @@ def is_filename_already_a_guid(file_path):
 		return False
 	return True
 
+#
+# this renames all files matching a sample name to a single guid
+#
+# 1. get the sample name following {PATTERN}/{SAMPLE_NAME}{SUFFIX} pattern
+#
+# 2. generate {GUID}
+#
+# 3. rename all files matching {PATTERN}/{SAMPLE_NAME}* to {GUID}{SUFFIX}
+#
+# 4. output json array to stdout that can be used by import.py
+#
 def main():
 	time_now = time.gmtime()
 
