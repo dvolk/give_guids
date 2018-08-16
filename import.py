@@ -1,4 +1,15 @@
+#
+# parses output of give_guids.py and inserts data into a table
+# 
+# used mainly for mapping guids to names for arboreta
+#
+
+#
+# create database:
+#
+# sqlite3 db2.sqlite
 # CREATE TABLE samples (guid primary key, project, name, path, other_json);
+#
 
 import sys, json, sqlite3
 
